@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Main Page</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="header">
+    <a class="logo" href="index.html" >
+      <img src="./img/bk.png" alt="logo" class="logo-img">
+    </a>
+  
+    
+    <div class="btns-wrapper">
+        <p onclick="window.location.href='index.html'">Home</p>
+      <div class="auth-buttons">
+        <p onclick="window.location.href='login.html'">Login</p>
+        <p onclick="window.location.href='signup.html'">Sign Up</p>
+      </div>
+      <div class="dropdown">
+        <span>Language</span>
+        <div class="dropdown-content">
+          <a href="#">GE</a>
+          <a href="#">EN</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="content" style="background: #191927">
+    <h1 style="color: #fff">Welcome to the Main Page!</h1>
+    <div class="books" style=" width: 100%">
+        <!-- Book frames -->
+        <div class="book-frame" onclick="window.location.href='details.html?bookId=1&imageUrl=./img/hari.jpg'">
+          <img src="./img/hari.jpeg" alt="Book 1" style="width: 100%; height: 200px;">
+            <p style="font-size: 15px; text-align: justify; padding: 10px;color: #fff !important; height: 100px;">
+                The Deathly Hallows is about Harry Potter and his friends finding ways to destroy Voldemort. They learn that even good contains a bit of evil, and vise versa. Even though the trio faces many difficulties, they persevere.
+            </p>
+            <div style="display: flex;justify-content: space-between; align-items: center; padding: 10px">
+                <h2 style="color: #fff">Harry Potter</h2>
+                <button class="view-more-btn" onclick="window.location.href='details.html?bookId=2'">View More</button>
+            </div>
+        </div>
+
+        <div class="book-frame">
+          <img src="./img/game.jpeg" alt="Book 2" style="width: 100%; height: 200px;">
+            <p style=";font-size: 15px; text-align: justify; padding: 10px;color: #fff !important;height: 100px">
+                A Song of Ice and Fire takes place in a fictional world in which seasons last for years and end unpredictably. Nearly three centuries before the events of the first novel, the Seven Kingdoms of Westeros were united under the Targaryen dynasty, establishing military supremacy through their control of dragons.
+            </p>
+          <div style="display: flex;justify-content: space-between; align-items: center; padding: 10px">
+              <h2 style="color: #fff">Game of thrones</h2>
+              <button class="view-more-btn" onclick="window.location.href='details.html?bookId=2'">View More</button>
+          </div>
+        </div>
+
+        <div class="book-frame" onclick="window.location.href='details.html?bookId=3'">
+          <img src="./img/tucker.jpeg" alt="Book 3" style="width: 100%; height: 200px;">
+            <p style="font-size: 15px; text-align: justify; padding: 10px;color: #fff !important;height: 100px">
+                Tucker is a novel that starts out with a boy, Shell Tucker, and his Pa on a cattle drive to sell that cattle their community worked together to raise. On their way home, they got in a heated argument, Shell galloped off from his father, and his father's horse acted up to where he was bucked off and the horse ran away
+            </p>
+            <div style="display: flex;justify-content: space-between; align-items: center; padding: 10px">
+                <h2 style="color: #fff">Tucker Carlson</h2>
+                <button class="view-more-btn" onclick="window.location.href='details.html?bookId=2'">View More</button>
+            </div>
+        </div>
+
+        <div class="book-frame" onclick="window.location.href='details.html?bookId=4'">
+          <img src="./img/jojo.jpeg" alt="Book 4" style="width: 100%; height: 200px;">
+            <p style="font-size: 15px; text-align: justify; padding: 10px;color: #fff !important;height: 100px">
+                Louisa Clark is an ordinary girl living an exceedingly ordinary life—steady boyfriend, close family—who has barely been farther afield than their tiny village. She takes a badly needed job working for ex–Master of the Universe Will Traynor, who is wheelchair bound after an accident.
+            </p>
+            <div style="display: flex;justify-content: space-between; align-items: center; padding: 10px">
+                <h2 style="color: #fff">Me Before You</h2>
+                <button class="view-more-btn" onclick="window.location.href='details.html?bookId=2'">View More</button>
+            </div>
+        </div>
+    </div>
+   
+  </div>
+</body>
+</html>

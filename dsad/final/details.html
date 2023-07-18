@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book Details</title>
+  <link rel="stylesheet" href="./styles.css">
+  <style>
+    /* Additional styles for the book details page */
+    .content {
+      padding: 100px 20px;
+      text-align: center;
+      color: #fff;
+    }
+  
+    .book-info {
+      margin-top: 50px;
+    }
+  
+    .book-info img {
+      width: 100%;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+  
+    .book-info h2 {
+      font-size: 24px;
+
+    }
+  
+    .book-info p {
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <a class="logo" href="index.html" >
+      <img src="./img/bk.png" alt="logo" class="logo-img">
+    </a>
+  
+    
+    <div class="btns-wrapper">
+      <p onclick="window.location.href='index.html'">Home</p>
+      <div class="auth-buttons">
+        <p onclick="window.location.href='login.html'">Login</p>
+        <p onclick="window.location.href='signup.html'">Sign Up</p>
+      </div>
+      <div class="dropdown">
+        <span>Language</span>
+        <div class="dropdown-content">
+          <a href="#">GE</a>
+          <a href="#">EN</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="content" style="background: #191927">
+
+    <div class="book-info">
+      <!-- Book details will be dynamically loaded here -->
+    </div>
+  </div>
+  
+  <script>
+    // Retrieve the book ID from the URL parameter
+    var queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    var bookId = urlParams.get('bookId');
+    
+    // Get book details based on the selected book ID
+    // You can customize this part to fetch book details from a server or an external data source
+    var bookDetails = {
+      1: {
+        name: "Harry Potter",
+        availability: "Available",
+        description: "The Deathly Hallows is about Harry Potter and his friends finding ways to destroy Voldemort. They learn that even good contains a bit of evil, and vise versa. Even though the trio faces many difficulties, they persevere.",
+        image: "./img/hari.jpeg"
+      },
+      2: {
+        name: "Game of thrones",
+        availability: "Available",
+        description: "A Song of Ice and Fire takes place in a fictional world in which seasons last for years and end unpredictably. Nearly three centuries before the events of the first novel, the Seven Kingdoms of Westeros were united under the Targaryen dynasty, establishing military supremacy through their control of dragons.",
+        image: "./img/game.jpeg"
+      },
+      3: {
+        name: "About Tucker",
+        availability: "Available",
+        description: "Tucker is a novel that starts out with a boy, Shell Tucker, and his Pa on a cattle drive to sell that cattle their community worked together to raise. On their way home, they got in a heated argument, Shell galloped off from his father, and his father's horse acted up to where he was bucked off and the horse ran away.",
+        image: "./img/tucker.jpeg"
+      },
+      4: {
+        name: "Me before you",
+        availability: "Not Available",
+        description: "Louisa Clark is an ordinary girl living an exceedingly ordinary life—steady boyfriend, close family—who has barely been farther afield than their tiny village. She takes a badly needed job working for ex–Master of the Universe Will Traynor, who is wheelchair bound after an accident.",
+        image: "./img/jojo.jpeg"
+      }
+    };
+    
+    // Check if the book details exist for the given book ID
+    if (bookDetails.hasOwnProperty(bookId)) {
+      var book = bookDetails[bookId];
+      
+      // Build the HTML for displaying book details
+      var bookHtml = `
+        <img src="${book.image}" alt="${book.name}">
+        <div style="position: absolute;bottom: -100px;left: 35%;">
+         <h2 style="color: #fff; margin-top: 20px">${book.name}</h2>
+        <p style="color: #fff">Availability: ${book.availability}</p>
+        <p style="color: #fff; text-align: center; width: 500px" >Description: ${book.description}</p>
+</div>
+      `;
+      
+      // Update the book details on the page
+      document.querySelector('.book-info').innerHTML = bookHtml;
+    } else {
+      // Display an error message if the book details are not found
+      document.querySelector('.book-info').innerHTML = '<p>Book details not found.</p>';
+    }
+  </script>
+</body>
+</html>

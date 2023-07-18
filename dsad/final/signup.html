@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up Page</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="header">
+    <a class="logo" href="index.html" >
+      <img src="./img/bk.png" alt="logo" class="logo-img">
+    </a>
+  
+    
+    <div class="btns-wrapper">
+      <p onclick="window.location.href='index.html'">Home</p>
+      <div class="auth-buttons">
+        <p onclick="window.location.href='login.html'">Login</p>
+        <p onclick="window.location.href='signup.html'">Sign Up</p>
+      </div>
+      <div class="dropdown">
+        <span>Language</span>
+        <div class="dropdown-content">
+          <a href="#">GE</a>
+          <a href="#">EN</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div style="display: flex;justify-content: center;align-items: center;background: #191927;width: 100%;
+height: 100vh">
+
+  <form id="signupForm" style=" width: 800px; display: flex; justify-content: center; flex-direction: column; align-items: center;">
+    <input style="width: 250px; margin-top: 10px;" type="email" id="email" name="email" placeholder="Email" class="singup-field" required>
+    
+    <input style="width: 250px; margin-top: 10px;" type="text" id="name" name="name" placeholder="Name" class="singup-field" required>
+    
+    <input style="width: 250px; margin-top: 10px;" type="text" id="surname" name="surname" placeholder="Surname"  class="singup-field" required>
+    
+    <input style="width: 250px; margin-top: 10px;" type="password" id="password" name="password" placeholder="Password" class="singup-field" required minlength="5">
+
+    <input style="width: 250px; margin-top: 10px;"  type="password" id="confirmPassword" name="confirmPassword" class="singup-field" placeholder="Confirm Password" required minlength="5"><br>
+    <span id="passwordError" style="color: red;"></span>
+    
+    <button type="submit" class="s-btn">Sign Up</button>
+  </form>
+  </div>
+
+  
+  <script>
+    function errorHandler(err) {
+      console.error(err);
+    }
+    
+    function createFileWriter(fileEntry, userData) {
+      fileEntry.createWriter(function(fileWriter) {
+        fileWriter.onwriteend = function() {
+          // Assuming successful sign up, store the login state
+          localStorage.setItem('loggedIn', true);
+          
+          // Redirect to the main page
+          // window.location.href = 'index.html';
+        };
+        
+        fileWriter.onerror = errorHandler;
+        
+        fileWriter.write(new Blob([JSON.stringify(userData, null, 2)], { type: 'application/json' }));
+      }, errorHandler);
+    }
+    
+    function onInitFs(fs) {
+      fs.root.getFile('usercredentials.json', { create: true }, function(fileEntry) {
+        var email = document.getElementById('email').value;
+        var name = document.getElementById('name').value;
+        var surname = document.getElementById('surname').value;
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirmPassword').value;
+        
+        if (password !== confirmPassword) {
+          document.getElementById('passwordError').textContent = "Passwords do not match.";
+        } else {
+          var userData = {
+            email: email,
+            name: name,
+            surname: surname,
+            password: password
+          };
+          
+          createFileWriter(fileEntry, userData);
+        }
+      }, errorHandler);
+    }
+    
+    window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
+    
+    if (window.requestFileSystem) {
+      window.requestFileSystem(window.TEMPORARY, 5 * 1024 * 1024, onInitFs, errorHandler);
+    } else {
+      console.error('File System API is not supported in this browser.');
+    }
+  </script>
+</body>
+</html>
